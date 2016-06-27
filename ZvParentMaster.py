@@ -604,8 +604,8 @@ def attach():
             if target not in targetList:
                 _addTarget(constrName, target)
                 # settalo a 0 nel primo fotogramma (dato che e' nuovo), non vale se sono nel primo frame
-                if currentFrame > firstFrame:
-                    cmds.setKeyframe('%s.w%d' % (constrName, len(targetList)), ott='step', t=firstFrame, v=0.0)
+                # if currentFrame > firstFrame:
+                cmds.setKeyframe('%s.w%d' % (constrName, len(targetList)), ott='step', t=firstFrame, v=0.0)
 
             # settalo a 1 nel fotogramma corrente
             targetID = cmds.parentConstraint(constrName, q=True, tl=True).index(target)
@@ -627,9 +627,9 @@ def attach():
             cmds.setKeyframe(snapGroup, at=['translate', 'rotate'], ott='step')
 
             # settalo a 0 nel primo fotogramma (dato che e' nuovo), non vale se sono nel primo frame
-            if currentFrame > firstFrame:
-                cmds.setKeyframe(constrName, at='w0', ott='step', t=firstFrame, v=0.0)
-                cmds.setKeyframe(snapGroup, at=['translate', 'rotate'], ott='step', t=firstFrame, v=0.0)
+            # if currentFrame > firstFrame:
+            cmds.setKeyframe(constrName, at='w0', ott='step', t=firstFrame, v=0.0)
+            cmds.setKeyframe(snapGroup, at=['translate', 'rotate'], ott='step', t=firstFrame, v=0.0)
 
         # set keyframes to green
         cmds.keyframe([snapGroup, constrName], tds=True)
